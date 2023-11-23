@@ -49,30 +49,30 @@ const sideChangePanel = (num) => {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
-    .input-btn {
-      font-family: inherit;
-      width: 120px;
-      height: 50px;
-      line-height: 50px;
-      margin: 20px;
-      border: 2px solid #000;
-      transition: all .2s;
-      font-size: 17px;
-      border-radius: 6px;
-      font-weight: 500;
-      color: #000;
-      cursor: pointer;
-      background-color: #f4f6fa;
-    }
-    .input-btn:hover {
-      color: #fff;
-      background-color: black;
-    }
-    .input-btn:active {
-      background: #808080;
-      transition: background 0s;
-    }
   }
+}
+
+.input-btn {
+  font-family: system-ui;
+  width: 120px;
+  height: 50px;
+  line-height: 50px;
+  margin: 20px;
+  border: 2px solid #000;
+  transition: all .2s;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+  background-color: #f4f6fa;
+}
+.input-btn:hover {
+  color: #fff;
+  background-color: black;
+}
+.input-btn:active {
+  background: #808080;
+  transition: background 0s;
 }
 </style>

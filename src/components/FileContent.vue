@@ -54,6 +54,7 @@ onMounted(() => {
     after() {
       vditor.value.setValue('')
     },
+    mode: 'wysiwyg',
     width: '100%',
     toolbar: [
       "headings",
