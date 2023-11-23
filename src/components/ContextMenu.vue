@@ -1,18 +1,36 @@
 <script setup>
-import {ref} from "vue";
+import {watch} from "vue";
 
-const props = defineProps(['visibleProp', 'xProp', 'yProp'])
+const props = defineProps(['visibleProp', 'xProp', 'yProp', 'chooseItem'])
 const emit = defineEmits(['noVisible'])
 
 const doSomething = () => {
   console.log('菜单项被点击');
+  console.log(props.chooseItem)
   emit('noVisible')
 }
+const listener = (event) => {
+  const targetElement = document.getElementById('context-menu');
+  if (targetElement != null && event.target !== targetElement && !targetElement.contains(event.target)) {
+    emit('noVisible')
+  }
+}
+watch(() => {
+  return props.visibleProp;
+}, (newVisible, oldVisible) => {
+  if (newVisible) {
+    console.log(1)
+    document.addEventListener('click', listener);
+  } else {
+    console.log(2)
+    document.removeEventListener('click', listener);
+  }
+})
 </script>
 
 <template>
   <div v-if="props.visibleProp" id="context-menu" :style="{ top: `${props.yProp}px`, left: `${props.xProp}px` }">
-    <div class="menu-item" @click="doSomething">
+    <div class="menu-item" @click="doSomething" v-if="props.chooseItem.folder">
       <span>new folder</span>
     </div>
     <div class="menu-item" @click="doSomething">
