@@ -47,7 +47,7 @@ const doFocus = () => {
               v-bind:style="{ 'margin-left': props.tree.children.length !== 0 ? '0px' : '12px' }"></folder>
       <file class="file-icon" v-if="!props.tree.folder"
             v-bind:style="{ 'margin-left': props.tree.folder ? '0px' : '12px' }"></file>
-      <span>{{ props.tree.name }}</span>
+      <span class="item-name">{{ props.tree.name }}</span>
       <more-action class="more-action" @click.stop="showContextMenu"></more-action>
     </div>
     <div id="children" v-show="isOpen">
@@ -89,7 +89,7 @@ const doFocus = () => {
     .more-action:hover {
       background-color: #c5c5c5;
     }
-    span {
+    .item-name {
       font-family: system-ui;
       font-size: 14px;
       font-weight: 100;
