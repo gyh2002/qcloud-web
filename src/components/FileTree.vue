@@ -56,7 +56,7 @@ const doFocus = () => {
     </div>
   </div>
   <context-menu @focus="doFocus" @blur="noVisible" :visibleProp="contextMenuVisible" :xProp="contextMenuX"
-                :yProp="contextMenuY" @no-visible="noVisible"></context-menu>
+                :yProp="contextMenuY" :choose-item="props.tree" @no-visible="noVisible"></context-menu>
 </template>
 
 <style scoped>
