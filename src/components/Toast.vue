@@ -1,21 +1,22 @@
 <script setup>
-import {ref, watchEffect} from "vue";
+import {watch} from "vue";
 
 const props = defineProps(['message', 'visibleProp'])
-const visible = ref(false);
-watchEffect(() => {
-  visible.value = props.visibleProp;
-  if (props.visibleProp) {
+const emit = defineEmits(['closeToast'])
+watch(() => {
+  return props.visibleProp;
+}, (newVi, oldVi) => {
+  if (newVi) {
     setTimeout(() => {
-      visible.value = false;
-    }, 3000);  // 3秒后自动关闭
+      emit('closeToast')
+    }, 3000);
   }
-});
+})
 </script>
 
 <template>
   <transition name="fade">
-    <div v-if="visible" class="toast">
+    <div v-if="props.visibleProp" class="toast">
       {{ message }}
     </div>
   </transition>

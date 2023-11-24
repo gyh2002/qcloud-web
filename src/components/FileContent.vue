@@ -16,6 +16,10 @@ const showToast = (message) => {
   toastMessage.value = message;
   toastVisible.value = true;
 };
+const notShowToast = () => {
+  toastMessage.value = '';
+  toastVisible.value = false;
+};
 const refreshContent = () => {
   get('/file/get-file-content', {
     fileId: props.fileId
@@ -155,7 +159,7 @@ onMounted(() => {
 <template>
   <div id="content-wrap">
   </div>
-  <Toast :message="toastMessage" :visibleProp="toastVisible" />
+  <Toast :message="toastMessage" :visibleProp="toastVisible" @close-toast="notShowToast" />
 </template>
 
 <style scoped>

@@ -47,7 +47,7 @@ onMounted(async () => {
 
 <template>
   <div id="wrap-side">
-    <file-tree v-for="item in tree.children" :tree="item" @chooseFile="resolveChoose" v-if="tree"></file-tree>
+    <file-tree v-for="item in tree.children" :tree="item" :parent="null" @chooseFile="resolveChoose" v-if="tree"></file-tree>
   </div>
 </template>
 
