@@ -15,6 +15,21 @@ const listener = (event) => {
     emit('noVisible')
   }
 }
+const addFolder = () => {
+  emit('noVisible')
+}
+const addFile = () => {
+  emit('noVisible')
+}
+const deleteItem = () => {
+  emit('noVisible')
+}
+const renameItem = () => {
+  emit('noVisible')
+}
+const closeMenu = () => {
+  emit('noVisible')
+}
 watch(() => {
   return props.visibleProp;
 }, (newVisible, oldVisible) => {
@@ -30,17 +45,17 @@ watch(() => {
 
 <template>
   <div v-if="props.visibleProp" id="context-menu" :style="{ top: `${props.yProp}px`, left: `${props.xProp}px` }">
-    <div class="menu-item" @click="doSomething" v-if="props.chooseItem.folder">
+    <div class="menu-item" @click="addFolder" v-if="props.chooseItem.folder">
       <span>new folder</span>
     </div>
-    <div class="menu-item" @click="doSomething">
+    <div class="menu-item" @click="addFile" v-if="props.chooseItem.folder">
       <span>new file</span>
     </div>
     <div class="menu-item" @click="doSomething">
-      <span>delete</span>
+      <span>rename</span>
     </div>
     <div class="menu-item" @click="doSomething">
-      <span>rename</span>
+      <span>delete</span>
     </div>
     <div class="menu-item" @click="doSomething">
       <span>cancel</span>
