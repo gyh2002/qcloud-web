@@ -2,11 +2,10 @@
 import {watch} from "vue";
 
 const props = defineProps(['visibleProp', 'xProp', 'yProp', 'chooseItem'])
-const emit = defineEmits(['noVisible'])
+const emit = defineEmits(['noVisible', 'doAction'])
 
-const doSomething = () => {
-  console.log('菜单项被点击');
-  console.log(props.chooseItem)
+const doSomething = (action) => {
+  emit('doAction', action)
   emit('noVisible')
 }
 const listener = (event) => {
@@ -15,49 +14,35 @@ const listener = (event) => {
     emit('noVisible')
   }
 }
-const addFolder = () => {
-  emit('noVisible')
-}
-const addFile = () => {
-  emit('noVisible')
-}
-const deleteItem = () => {
-  emit('noVisible')
-}
-const renameItem = () => {
-  emit('noVisible')
-}
-const closeMenu = () => {
-  emit('noVisible')
-}
 watch(() => {
   return props.visibleProp;
 }, (newVisible, oldVisible) => {
   if (newVisible) {
-    console.log(1)
     document.addEventListener('click', listener);
   } else {
-    console.log(2)
     document.removeEventListener('click', listener);
   }
 })
+const closeMenu = () => {
+  emit('noVisible')
+}
 </script>
 
 <template>
   <div v-if="props.visibleProp" id="context-menu" :style="{ top: `${props.yProp}px`, left: `${props.xProp}px` }">
-    <div class="menu-item" @click="addFolder" v-if="props.chooseItem.folder">
+    <div class="menu-item" @click="doSomething('newFolder')" v-if="props.chooseItem.folder">
       <span>new folder</span>
     </div>
-    <div class="menu-item" @click="addFile" v-if="props.chooseItem.folder">
+    <div class="menu-item" @click="doSomething('newFile')" v-if="props.chooseItem.folder">
       <span>new file</span>
     </div>
-    <div class="menu-item" @click="doSomething">
+    <div class="menu-item" @click="doSomething('rename')">
       <span>rename</span>
     </div>
-    <div class="menu-item" @click="doSomething">
+    <div class="menu-item" @click="doSomething('delete')">
       <span>delete</span>
     </div>
-    <div class="menu-item" @click="doSomething">
+    <div class="menu-item" @click="closeMenu">
       <span>cancel</span>
     </div>
   </div>
